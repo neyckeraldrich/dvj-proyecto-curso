@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -9,24 +7,38 @@ public class Player : MonoBehaviour
 
     public float walkingSpeed;
     public float jumpSpeed;
+    public int maxJumps;
+
+    private int currentJumps = 0;
 
     private void Awake()
     {
-        trans = this.transform;
+        trans = transform;
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        // Handle max amount of jumps
+        if (currentJumps > 0 && body.velocity.y == 0)
+        {
+            currentJumps = 0;
+            Debug.Log("You can jump again!");
+        }
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
-        { // x-axis movement
-            body.velocity += jumpSpeed * Vector2.up;
+        { // y-axis movement
+            if (currentJumps < maxJumps)
+            {
+                body.velocity += jumpSpeed * Vector2.up;
+                currentJumps++;
+            }
         }
 
         { // x-axis movement
@@ -34,20 +46,21 @@ public class Player : MonoBehaviour
             var speed = 0f;
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-            
-                    if (GetComponent<SpriteRenderer>().flipX == false)
-                    {
-                        GetComponent<SpriteRenderer>().flipX = true;
-                    }            
+
+                if (GetComponent<SpriteRenderer>().flipX == false)
+                {
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
                 speed += -walkingSpeed;
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                    if (GetComponent<SpriteRenderer>().flipX==true){
-                        GetComponent<SpriteRenderer> ().flipX = false;
-                    }            
-            
-            
+                if (GetComponent<SpriteRenderer>().flipX == true)
+                {
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+
+
                 speed += walkingSpeed;
             }
             v.x = speed;
@@ -60,9 +73,9 @@ public class Player : MonoBehaviour
         var otherObject = collision.collider.gameObject;
         if (otherObject.tag == "Magnifier")
         {
-            var scale = this.transform.localScale;
+            var scale = transform.localScale;
             scale.y *= 2;
-            this.transform.localScale = scale;
+            transform.localScale = scale;
             //otherObject.SetActive(false);
             //GameObject.Destroy(otherObject);
         }

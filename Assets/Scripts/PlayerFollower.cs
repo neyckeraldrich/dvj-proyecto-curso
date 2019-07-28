@@ -23,8 +23,8 @@ public class PlayerFollower : MonoBehaviour
     void Update()
     {
         Vector3 cameraPos = trans.position;
-        cameraPos.x = player.trans.position.x;
-        cameraPos.y = player.trans.position.y + offsetY;
+        cameraPos.x = player.transform.position.x;
+        cameraPos.y = player.transform.position.y + offsetY;
         trans.position = cameraPos;
 
         //this.transform.position = player.transform.position;

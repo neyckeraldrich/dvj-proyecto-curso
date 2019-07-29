@@ -540,8 +540,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trans: {fileID: 527748814}
-  player: {fileID: 0}
-  offsetY: 2
+  player: {fileID: 527748815}
+  offsetY: 1
 --- !u!1 &788057284
 GameObject:
   m_ObjectHideFlags: 0

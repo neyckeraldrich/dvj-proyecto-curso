@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public Transform trans;
     public Rigidbody2D body;
@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     public float jumpSpeed;
     public int maxJumps;
 
-    private int currentJumps = 0;
+    private int m_currentJumps = 0;
+    private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
     private void Awake()
     {
@@ -26,43 +27,46 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // Handle max amount of jumps
-        if (currentJumps > 0 && body.velocity.y == 0)
+        if (m_currentJumps > 0 && body.velocity.y == 0)
         {
-            currentJumps = 0;
+            m_currentJumps = 0;
             Debug.Log("You can jump again!");
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         { // y-axis movement
-            if (currentJumps < maxJumps)
+            if (m_currentJumps < maxJumps)
             {
                 body.velocity += jumpSpeed * Vector2.up;
-                currentJumps++;
+                m_currentJumps++;
             }
         }
 
         { // x-axis movement
             var v = body.velocity;
             var speed = 0f;
+
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-
-                if (GetComponent<SpriteRenderer>().flipX == false)
-                {
-                    GetComponent<SpriteRenderer>().flipX = true;
-                }
                 speed += -walkingSpeed;
+
+                if (m_FacingRight)
+                {
+                    Flip();
+                }
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                if (GetComponent<SpriteRenderer>().flipX == true)
-                {
-                    GetComponent<SpriteRenderer>().flipX = false;
-                }
-
-
                 speed += walkingSpeed;
+
+                if (!m_FacingRight)
+                {
+                    Flip();
+                }
             }
+
+
+
             v.x = speed;
             body.velocity = v;
         }
@@ -79,5 +83,14 @@ public class Player : MonoBehaviour
             //otherObject.SetActive(false);
             //GameObject.Destroy(otherObject);
         }
+    }
+
+    private void Flip()
+    {
+        // Switch the way the player is labelled as facing.
+        m_FacingRight = !m_FacingRight;
+
+        // Rotate
+        transform.Rotate(0f, 180f, 0f);
     }
 }

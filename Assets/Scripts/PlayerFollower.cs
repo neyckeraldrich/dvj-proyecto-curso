@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerFollower : MonoBehaviour
 {
     public Transform trans;
-    public Player player;
+    public PlayerMovement player;
     public float offsetY;
 
     private void Awake()

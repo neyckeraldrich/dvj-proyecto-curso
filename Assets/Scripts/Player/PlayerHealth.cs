@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -31,15 +32,23 @@ public class PlayerHealth : MonoBehaviour
         {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
-
-        // Move to starting position
-        this.transform.position = startPosition.transform.position;
-
-        // Reduce lives counter in UI
-        this.lives--;
-        livesCounter.text = lives.ToString();
-
-        // Reset Health
-        health = 100;
+		
+		
+		// Reduce lives counter in UI
+			this.lives--;
+			livesCounter.text = lives.ToString();
+		
+		if (this.lives < 1){
+			SceneManager.LoadScene(3);
+		} else {
+			
+			
+			// Move to starting position
+			this.transform.position = startPosition.transform.position;
+			
+			// Reset Health
+			health = 100;
+		}
+		
     }
 }

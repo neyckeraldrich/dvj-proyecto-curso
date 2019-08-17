@@ -9,11 +9,15 @@ public class Enemy : MonoBehaviour
 
     public GameObject deathEffect;
     public PlayerHealth player;
+	
+	public SpriteRenderer renderer;
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-
+		
+		renderer.color = new Color(100 - health, 0, 0);
+		
         if (health <= 0)
         {
             Die();

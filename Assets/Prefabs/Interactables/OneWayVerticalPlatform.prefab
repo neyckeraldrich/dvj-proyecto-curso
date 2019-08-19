@@ -67,10 +67,10 @@ PlatformEffector2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2608187307967237839}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -90,5 +90,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08881b60bc49f94a97381d0ee74c6a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 0.5
-  remainingWaitTime: 0.5
+  waitTime: 0.25

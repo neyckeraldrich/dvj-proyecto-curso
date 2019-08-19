@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb.velocity = transform.right * speed;
+        FindObjectOfType<AudioManager>().Play("BulletFired");
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)

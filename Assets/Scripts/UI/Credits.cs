@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
 {
-    void Start()
-    {
-        FindObjectOfType<AudioManager>().Play("CreditsTheme");
-    }
-
-
     // Update is called once per frame
     void Update()
     {

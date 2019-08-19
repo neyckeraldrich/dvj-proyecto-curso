@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
+	public int levelId;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,7 @@ public class Door : MonoBehaviour
         if (other.gameObject.tag =="Player")
         {
 //            Application.LoadLevel(4);
-                SceneManager.LoadScene(2,LoadSceneMode.Single);
+                SceneManager.LoadScene(levelId,LoadSceneMode.Single);
         }
     }
 

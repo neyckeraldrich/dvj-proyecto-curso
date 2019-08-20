@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
 			livesCounter.text = lives.ToString();
 		
 		if (this.lives < 1){
-			SceneManager.LoadScene(3);
+			SceneManager.LoadScene(4);
 		} else {
 			
 			
